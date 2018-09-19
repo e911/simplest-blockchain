@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 class Block:
-    def _init_(self, index, timestamp, data, previous_hash):
+    def __init__(self, index, timestamp, data, previous_hash):
         # A block stored with a index and the timestamp
         self.index = index
         self.timestamp = timestamp
@@ -14,10 +14,10 @@ class Block:
     def create_hash(self):
         # Create hash with sha 256bit encryption
         sha = hashlib.sha256()
-        sha.update(str(self.index) +
+        sha.update((str(self.index) +
                    str(self.timestamp) +
                    str(self.data) +
-                   str(self.previous_hash))
+                   str(self.previous_hash)).encode('utf-8'))
         return sha.hexdigest()
 
 
